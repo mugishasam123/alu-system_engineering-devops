@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# connect to server using config file
+IdentifyFile ~/.ssh/school
+PasswordAuthentication no
+HostName 54.221.177.140
+User ubuntu
