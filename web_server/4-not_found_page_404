@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Customizing a 404-error_page
+
+# Update package list and install Nginx
+apt-get update
+apt-get install -y nginx
+
+# Create the HTML directory and index.html file
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Holberton School" > /etc/nginx/html/index.html
+touch /etc/nginx/html/404.html
+# Create the custom 404 error page
+echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
+
+# Update the Nginx default server block configuration
+
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root /etc/nginx/html;
+    index index.html index.htm;
+
+    location /redirect_me {
+        return 301 https://www.alueducation.com/;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+}" > /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
+service nginx restart
