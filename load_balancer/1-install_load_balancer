@@ -64,7 +64,7 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 echo "$haproxy_config" | sudo tee /etc/haproxy/haproxy.cfg
 
 # Enable HAProxy to be started by the init script
-# echo "ENABLED=1" | sudo tee /etc/default/haproxy
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 # Check HAProxy configuration
 sudo haproxy -c -f /etc/haproxy/haproxy.cfg
